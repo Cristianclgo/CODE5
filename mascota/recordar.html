@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Formulario Inicio Sesion | CAEC</title>
+    <link rel="stylesheet" href="css/cesar.css">
+</head>
+
+<body onload="form1.usuario.focus()">
+
+    <div class="login-box">
+        <!--crea una caja imaginaria-->
+        <img src="image/logo.png" class="avatar" alt="Avatar Image">
+
+        <!--insertamos una imagen-->
+        <h1>INICIO SESION</h1>
+        <!--Inserta titulo-->
+        <form method="POST" name="form1" id="form1" action="includes/inicio.php" autocomplete="off">
+            <!--crea formularios-->
+
+            <label for="usuario">USUARIO</label>
+            <!-- etiqueta lo que se le muestra el usuario -->
+            <input type="text" name="usuario" id="usuario" placeholder="Digite Usuario">
+            <!-- Caja de texto donde el usuario digite texto -->
+            <label for="password">Password</label>
+            <input type="password" name="clave" id="password" placeholder="Ingrese Contraseña">
+            <!-- caja de texto donde el usuario coloca la contraseña -->
+            <input type="submit" name="inicio" id="inicio" value="Validar">
+            <!--Crear el boton-->
+            <a href="recordar.html">Recordar Contraseña?</a>
+            <!--sirve para crear hiperviculos o enlaces a otras paginas-->
+            <br>
+            <!--Crea un salto de linea-->
+            <a href="registrousu.php">Registrarme?</a>
+
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Formulario Inicio Sesion | CAEC</title>
+    <link rel="stylesheet" href="controller/css/style.css">
+</head>
+
+<body onload="form1.doc.focus()">
+
+    <div class="login-box">
+        <!--crea una caja imaginaria-->
+        <img src="controller/image/logo.png" class="avatar" alt="Avatar Image">
+
+        <!--insertamos una imagen-->
+        <h1>RECUPERAR CONTRASEÑA</h1>
+        <!--Inserta titulo-->
+        <form method="POST" name="form1" id="form1" autocomplete="off" action="model/recuperarclave.php">
+            <!--crea formularios-->
+
+            <label for="usuario">Documento Identidad</label>
+            <!-- etiqueta lo que se le muestra el usuario -->
+            <input type="text" name="doc" id="doc" placeholder="Digite Documento Identidad" required>
+            <!-- Caja de texto donde el usuario digite texto -->
+            <input type="submit" name="inicio" id="inicio" value="Validar">
+            <!--Crear el boton-->
+            <a href="index.html">Volver Pagina Principal</a>
+        </form>
+    </div>
+</body>
+
+</html>
