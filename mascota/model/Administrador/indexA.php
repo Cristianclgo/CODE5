@@ -77,7 +77,7 @@ if(isset($_POST['btncerrar']))
                 </li>
     
                 <li>
-                    <a href="#">
+                    <a href="agregartipomascota.php">
                         <img src="img/MASCOTA.png" alt="" class="imagen">
                         <span class="text-item">AGREGAR TIPO DE MASCOTA</span>
                         <span class="down-item"></span>
@@ -85,7 +85,7 @@ if(isset($_POST['btncerrar']))
                 </li>
     
                 <li>
-                    <a href="#">
+                    <a href="agregarmascli.php">
                         <img src="img/registromascota.png" alt="" class="imagen">
                         <span class="text-item">AGREGAR MASCOTA CLIENTE</span>
                         <span class="down-item"></span>
@@ -93,15 +93,15 @@ if(isset($_POST['btncerrar']))
                 </li>
     
                 <li>
-                    <a href="#">
+                    <a href="agregartipesta.php">
                         <img src="img/estado.png" alt="" class="imagen">
                         <span class="text-item">CREAR ESTADO</span>
                         <span class="down-item"></span>
                     </a>
                 </li>
     
-                <li class="first-item">
-                    <a href="#">
+                <li class="afiliacion.php">
+                    <a href="afiliacion.php">
                         <img src="img/afiliacion.jpg" alt="" class="imagen">
                         <span class="text-item">AFILIACION</span>
                         <span class="down-item"></span>
@@ -109,44 +109,38 @@ if(isset($_POST['btncerrar']))
                 </li>
     
                 <li>
-                    <a href="#">
-                        <img src="" alt="" class="imagen">
+                    <a href="medicame.php">
+                        <img src="img/medicame.jpg" alt="" class="imagen">
                         <span class="text-item">MEDICAMENTOS</span>
                         <span class="down-item"></span>
                     </a>
                 </li>
     
                 <li>
-                    <a href="#">
-                        <img src="" alt="" class="imagen">
+                    <a href="visita.php">
+                        <img src="img/visita.jpg" alt="" class="imagen">
                         <span class="text-item">VISITA</span>
                         <span class="down-item"></span>
                     </a>
                 </li>
     
                 <li>
-                    <a href="#">
-                        <img src="" alt="" class="imagen">
+                    <a href="recibo.php">
+                        <img src="img/recibo.jpg" alt="" class="imagen">
                         <span class="text-item">RECIBO</span>
                         <span class="down-item"></span>
                     </a>
                 </li>
     
                 <li>
-                    <a href="#">
+                    <a href="lista/lista_usuarios.php">
                         <img src="" alt="" class="imagen">
-                        <span class="text-item">OPCION 10</span>
+                        <span class="text-item">CONSULTAR LISTA DE USUARIOS</span>
                         <span class="down-item"></span>
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
-                        <img src="" alt="" class="imagen">
-                        <span class="text-item">OPCION 11</span>
-                        <span class="down-item"></span>
-                    </a>
-                </li>
+                
                 
             </ul>
             

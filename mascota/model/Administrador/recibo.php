@@ -12,15 +12,21 @@ $usua = mysqli_fetch_assoc($usuarios);
 
 <!--selecciona tabla  tipousuario-->
 <?php
-    $control = "SELECT * From tipousuario";
+    $control = "SELECT * From visita";
     //WHERE tipoUsua >= 1
     $query=mysqli_query($mysqli,$control);
     $fila=mysqli_fetch_assoc($query);
 ?>
 
+<?php
+    $sqlm = "SELECT * From medicamentos WHERE idMedicamento";
+    $query_med=mysqli_query($mysqli,$sqlm);
+    $fila_med=mysqli_fetch_assoc($query_med);
+?>
+
 <!--selecciona tabla estado-->
 <?php
-    $sqle = "SELECT * From estado WHERE id_estado < 3";
+    $sqle = "SELECT * From estado WHERE id_estado > 2";
     $query_est=mysqli_query($mysqli,$sqle);
     $fila_est=mysqli_fetch_assoc($query_est);
 ?>
@@ -28,38 +34,39 @@ $usua = mysqli_fetch_assoc($usuarios);
 
 
 
+
 <?php
     if ((isset($_POST["MM_insert"]))&&($_POST["MM_insert"]=="formreg"))
     {
-        $idusu=    $_POST['idusu'];
-        $nombreUsu=    $_POST['nom'];
-        $direccion=   $_POST['dir'];
-        $correo=     $_POST['correo'];
-        $tipoUsua=     $_POST['tipousua'];
-        $idestado=     $_POST['idest'];
-        $contraseña=     $_POST['pass'];
+        $idrec=    $_POST['idRecibo'];
+        $idvis=    $_POST['idVisita'];
+        $idmedica=   $_POST['idMedicamento'];
+        
 
-        $validar ="SELECT * FROM usuario WHERE iduser='$idusu' or nombreUser='$nombreUsu'";
+
+        $validar ="SELECT * FROM recibos WHERE idRecibo='$idrec'";
         $queryi=mysqli_query($mysqli,$validar);
         $fila1=mysqli_fetch_assoc($queryi);
     
        if ($fila1) {
-           echo '<script>alert ("DOCUMENTO O USUARIO EXISTEN //CAMBIELOS//");</script>';
-           echo '<script>windows.location="agregarusuario.php"</script>';
+           echo '<script>alert ("Ya existe recibo");</script>';
+           echo '<script>windows.location="recibo.php"</script>';
        }
-        else if ($idusu=="" || $nombreUsu=="" || $direccion=="" || $correo=="" || $tipoUsua=="" || $idestado==""|| $contraseña=="")
+        else if ($idrec=="" || $idvis=="" || $idmedica=="")
         {
             echo '<script>alert ("EXISTEN DATOS VACIOS");</script>';
-           echo '<script>windows.location="agregarusuario.php"</script>';
+           echo '<script>windows.location="recibo.php"</script>';
         }
 
         else
         {
 
-           $insertsql="INSERT INTO usuario(iduser,nombreUser,direccion,correo,tipoUsua,id_estado,contraseña) VALUES('$idusu','$nombreUsu','$direccion','$correo','$tipoUsua','$idestado','$contraseña')";
+           $insertsql="INSERT INTO recibos(idRecibo,idVisita,idMedicamento) VALUES
+           ('$idrec','$idvis','$idmedica')";
+           
            mysqli_query($mysqli,$insertsql) or die(mysqli_error());
            echo '<script>alert (" Registro Exitoso, Gracias");</script>';
-           echo '<script>window.location="agregarusuario.php"</script>';
+           echo '<script>window.location="recibo.php"</script>';
         }
     }
 ?>
@@ -109,7 +116,7 @@ if(isset($_POST['btncerrar']))
 </head>
     <body>
         <section class="title">
-            <h1>   <?php echo $usua['clasiUser']?> AGREGAR USUARIO</h1>
+            <h1>   <?php echo $usua['clasiUser']?> RECIBO</h1>
         </section>
         <table border="1" class="center">
             <form name ="frm_usu" method="POST" autocomplete="off">
@@ -128,70 +135,57 @@ if(isset($_POST['btncerrar']))
 
 
      <!--tabla donde se digitan las variables-->
+     
+        
+       
             
             
             <tr>
-                    <th colspan="2">Registrar Usuario</th>
+                    <th colspan="2">Registrar Recibo</th>
                 </tr>
                 <tr>
-                    <th><label>ID</label></th>
-                    <th><input type="number" name="idusu" placeholder="Ingrese Documento Identidad" ></th>
-                </tr>
-                <tr>
-                    <th><label>NOMBRE COMPLETO</label></th>
-                    <th><input type="text" name="nom" placeholder="Ingrese Nombres Completos" ></th>
-                </tr>
-                <tr>
-                    <th><label>DIRECCION</label></th>
-                    <th><input type="text" name="dir" placeholder="Direccion" ></th>
-                </tr>
-                <tr>
-                    <th><label>CORREO</label></th>
-                    <th><input type="email" name="correo" placeholder="Ingrese el correo" ></th>
-                </tr>
-                
-                
-                <tr>
-                    <th><label>CONTRASEÑA</label></th>
-                    <th><input type="password" name="pass" placeholder="Ingrese Contraseña" ></th>
+                    <th><label>ID RECIBO</label></th>
+                    <th><input type="number" name="idRecibo" placeholder="id Recibo" ></th>
                 </tr>
 
-
                 <tr>
-                    <th>TIPO DE USUARIO</th>
+                    <th>ID VISITA</th>
                     <th>
-                    <select name="tipousua" >
-                        <option value="">seleccione tipo de usuario</option>
+                    <select name="idVisita" >
+                        <option value="">selecccione la visita a facturar</option>
                           <?php
                             do{
 
                          ?>
-                    <option value="<?php echo ($fila['tipoUsua']) ?>"><?php echo ($fila['clasiUser'])?> </option>
+                    <option value="<?php echo ($fila['idVisita']) ?>"><?php echo ($fila['dateVisita'])?> </option>
                     <?php  } while($fila=mysqli_fetch_assoc($query));
                     ?>
 
                     </select> 
                    </th>   
                 </tr>
-                
-
 
                 <tr>
-                    <th><label>ESTADO DE USUARIO</label></th>
+                    <th>ID MEDICAMENTO</th>
                     <th>
-                    <select name="idest" >
-                        <option value="">seleccione el estado del usuario</option>
+                    <select name="idMedicamento" >
+                        <option value="">SELECCIONE MEDICAMENTO</option>
                           <?php
                             do{
 
                          ?>
-                    <option value="<?php echo ($fila_est['id_estado']) ?>"><?php echo ($fila_est['estado'])?> </option>
-                    <?php  } while($fila_est=mysqli_fetch_assoc($query_est));
+                    <option value="<?php echo ($fila_med['idMedicamento']) ?>"><?php echo ($fila_med['Medicamento'])?> </option>
+                    <?php  } while($fila_med=mysqli_fetch_assoc($query_med));
                     ?>
 
                     </select> 
                    </th>   
                 </tr>
+               
+                
+                
+                
+
 
 
                 

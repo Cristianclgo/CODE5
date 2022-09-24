@@ -11,28 +11,28 @@ $usua = mysqli_fetch_assoc($usuarios);
 <?php
 if ((isset($_POST["guardar"])) && ($_POST["guardar"] == "frm_usu")) 
 {
-    $tip_us = $_POST['tipusu'];
-    $sql_usu = "SELECT * FROM tipousuario WHERE clasiUser = '$tip_us'";
+    $tip_es = $_POST['tipest'];
+    $sql_usu = "SELECT * FROM estado WHERE estado = '$tip_es'";
     $tip = mysqli_query($mysqli, $sql_usu);
     $row = mysqli_fetch_assoc($tip);
 
     if ($row){
-        echo '<script>alert ("El usuario ya existe !!!Cambielo ");</script>';
-        echo '<script>window.location="agregar-usu.php"</script>';
+        echo '<script>alert ("El estado ya existe !!!Cambielo ");</script>';
+        echo '<script>window.location="agregartipesta.php"</script>';
     }
 
-    elseif ($_POST["tipusu"] == ""){
+    elseif ($_POST["tipest"] == ""){
         echo '<script>alert ("Campos vacios");</script>';
-        echo '<script>window.location="agregar-usu.php"</script>';
+        echo '<script>window.location="agregartipesta.php"</script>';
 
     }
 
     else{
-        $tipo = $_POST["tipusu"];
-        $sql_usu = "INSERT INTO tipousuario (clasiUser) VALUES('$tip_us')";
+        $tipo = $_POST["tipest"];
+        $sql_usu = "INSERT INTO estado (estado) VALUES('$tip_es')";
         $tip = mysqli_query($mysqli, $sql_usu);
         echo '<script>alert ("Registro ingresado en el sistema");</script>';
-        echo '<script>window.location="agregar-usu.php"</script>';
+        echo '<script>window.location="agregartipesta.php"</script>';
 
     }
 
@@ -84,20 +84,20 @@ if(isset($_POST['btncerrar']))
 </head>
     <body>
         <section class="title">
-            <h1>   <?php echo $usua['clasiUser']?> AGREGAR TIPOS USUARIO</h1>
+            <h1>   <?php echo $usua['clasiUser']?> AGREGAR TIPOS DE ESTADO</h1>
         </section>
         <table border="1" class="center">
             <form name ="frm_usu" method="POST" autocomplete="off">
                 <tr>
-                    <th colspan="2">Tipos Usuario</th>
+                    <th colspan="2">Tipos Estado</th>
                 </tr>
                 <tr>
-                    <th><label>Identificador</label></th>
+                    <th><label>Id estado</label></th>
                     <th><input type="text" placeholder="Id" readonly></th>
                 </tr>
                 <tr>
-                    <th><label>Tipo Usuario</label></th>
-                    <th><input style="text-transform:uppercase" type="text" name="tipusu" placeholder="Ingrese Tipo Usuario"></th>
+                    <th><label>Tipo Estado</label></th>
+                    <th><input style="text-transform:uppercase" type="text" name="tipest" placeholder="Ingrese Tipo Estado"></th>
                 </tr>
                 <tr>
                     <th colspan="2">&nbsp;</th>
