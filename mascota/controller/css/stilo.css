@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(../image/fondo.jpg) no-repeat center top;
+    background: url(../image/fondo2.jpg) no-repeat center top;
     background-size: cover;
     font-family: sans-serif;
     height: 100vh;
@@ -10,8 +10,8 @@ body {
 .login-box {
     width: 320px;
     height: 420px;
-    background: rgb(80, 77, 77);
-    color: #fff;
+    background: rgb(21, 90, 94);
+    color: #efe8e8;
     top: 50%;
     left: 50%;
     position: absolute;

@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(../image/fondo.jpg) no-repeat center top;
+    background: url(../image/fondo2.jpg) no-repeat center top;
     background-size: cover;
     font-family: sans-serif;
     height: 100vh;
@@ -10,8 +10,8 @@ body {
 .login-box {
     width: 320px;
     height: 520px;
-    background: rgb(80, 77, 77);
-    color: #fff;
+    background: #66666b62;
+    color: #fffbfb;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -21,12 +21,12 @@ body {
 }
 
 .login-box .avatar {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     position: absolute;
-    top: -50px;
-    left: calc(50% - 50px);
+    top: -100px;
+    left: calc(40% - 60px);
 }
 
 .login-box h1 {
@@ -69,7 +69,7 @@ body {
     border: none;
     outline: none;
     height: 40px;
-    background: #b80f22;
+    background: #6668dd;
     color: rgb(255, 255, 255);
     font-size: 18px;
     border-radius: 20px;
@@ -80,7 +80,7 @@ body {
 .login-box input[type="submit"]:hover {
     cursor: pointer;
     background: #34dd50;
-    color: rgb(207, 78, 26);
+    color: rgb(133, 109, 156);
 }
 
 
@@ -88,7 +88,7 @@ body {
     text-decoration: none;
     font-size: 12px;
     line-height: 20px;
-    color: rgb(180, 167, 167);
+    color: rgb(251 246 246);
 }
 
 .login-box a:hover {

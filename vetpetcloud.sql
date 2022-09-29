@@ -3,15 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-09-2022 a las 02:39:55
+-- Tiempo de generación: 29-09-2022 a las 03:20:29
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-Create DATABASE Vetpetcloud
-USE Vetpetcloud
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -39,7 +38,7 @@ CREATE TABLE `afiliacion` (
 --
 
 INSERT INTO `afiliacion` (`Afilb`, `dateafilb`, `id_mascota`) VALUES
-('afili01', '2021-12-15', 'con01');
+('55', '2022-09-12', '78');
 
 -- --------------------------------------------------------
 
@@ -48,7 +47,7 @@ INSERT INTO `afiliacion` (`Afilb`, `dateafilb`, `id_mascota`) VALUES
 --
 
 CREATE TABLE `estado` (
-  `id_estado` varchar(20) NOT NULL,
+  `id_estado` int(10) NOT NULL,
   `estado` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -57,10 +56,11 @@ CREATE TABLE `estado` (
 --
 
 INSERT INTO `estado` (`id_estado`, `estado`) VALUES
-('est1', 'Activo'),
-('est2', 'Inactivo'),
-('est3', 'Sano'),
-('est4', 'Enfermo');
+(1, 'Activo'),
+(2, 'Inactivo'),
+(3, 'Sano'),
+(4, 'Enfermo'),
+(8, 'aplastado');
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,7 @@ CREATE TABLE `mascotasclientes` (
   `nom_masc` char(10) DEFAULT NULL,
   `iduser` int(60) NOT NULL,
   `color` char(20) DEFAULT NULL,
-  `id_tip_masc` varchar(10) NOT NULL
+  `id_tip_masc` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -81,7 +81,8 @@ CREATE TABLE `mascotasclientes` (
 --
 
 INSERT INTO `mascotasclientes` (`id_mascota`, `nom_masc`, `iduser`, `color`, `id_tip_masc`) VALUES
-('con01', 'bunny', 99999, 'blanco', 'm3');
+('58', 'niko', 44444, 'gris', 2),
+('78', 'pancho', 22222, 'cafe', 1);
 
 -- --------------------------------------------------------
 
@@ -90,7 +91,7 @@ INSERT INTO `mascotasclientes` (`id_mascota`, `nom_masc`, `iduser`, `color`, `id
 --
 
 CREATE TABLE `medicamentos` (
-  `idMedicamento` varchar(20) NOT NULL,
+  `idMedicamento` int(10) NOT NULL,
   `Medicamento` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -99,10 +100,12 @@ CREATE TABLE `medicamentos` (
 --
 
 INSERT INTO `medicamentos` (`idMedicamento`, `Medicamento`) VALUES
-('med01', 'Antiinflamatorio Natural Para Mascotas Traumeel Ad'),
-('med02', 'Solución Antiséptica Baxidin Valvula'),
-('med03', 'Medicamento Homeopático Gastricumeel'),
-('med04', 'Medicamento Dermatológico Para Perro Apoquel');
+(1, 'Antiinflamatorio Natural Para Mascotas Traumeel Ad'),
+(2, 'Solución Antiséptica Baxidin Valvula'),
+(3, 'Medicamento Homeopático Gastricumeel'),
+(4, 'Medicamento Dermatológico Para Perro Apoquel'),
+(5, 'dolex'),
+(6, 'aspirina');
 
 -- --------------------------------------------------------
 
@@ -113,7 +116,7 @@ INSERT INTO `medicamentos` (`idMedicamento`, `Medicamento`) VALUES
 CREATE TABLE `recibos` (
   `idRecibo` int(18) NOT NULL,
   `idVisita` int(11) DEFAULT NULL,
-  `idMedicamento` varchar(20) DEFAULT NULL
+  `idMedicamento` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -121,7 +124,10 @@ CREATE TABLE `recibos` (
 --
 
 INSERT INTO `recibos` (`idRecibo`, `idVisita`, `idMedicamento`) VALUES
-(1, 1, 'med01');
+(1, 69, 6),
+(2, 1, 3),
+(3, 12, 3),
+(12, 58, 5);
 
 -- --------------------------------------------------------
 
@@ -130,7 +136,7 @@ INSERT INTO `recibos` (`idRecibo`, `idVisita`, `idMedicamento`) VALUES
 --
 
 CREATE TABLE `tipomascotas` (
-  `id_tip_masc` varchar(10) NOT NULL,
+  `id_tip_masc` int(10) NOT NULL,
   `tip_masc` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -139,9 +145,11 @@ CREATE TABLE `tipomascotas` (
 --
 
 INSERT INTO `tipomascotas` (`id_tip_masc`, `tip_masc`) VALUES
-('m1', 'perro'),
-('m2', 'gato'),
-('m3', 'conejo');
+(1, 'perro'),
+(2, 'gato'),
+(3, 'conejo'),
+(5, 'loro'),
+(6, 'mosca');
 
 -- --------------------------------------------------------
 
@@ -150,7 +158,7 @@ INSERT INTO `tipomascotas` (`id_tip_masc`, `tip_masc`) VALUES
 --
 
 CREATE TABLE `tipousuario` (
-  `tipoUsua` varchar(10) NOT NULL,
+  `tipoUsua` int(11) NOT NULL,
   `clasiUser` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -159,9 +167,13 @@ CREATE TABLE `tipousuario` (
 --
 
 INSERT INTO `tipousuario` (`tipoUsua`, `clasiUser`) VALUES
-('tp1', 'Administrador'),
-('tp2', 'Enfermera'),
-('tp3', 'Medico');
+(1, 'Administrador'),
+(2, 'Propietario'),
+(3, 'Veterinario'),
+(4, 'LOCO'),
+(6, 'enfermero'),
+(7, 'ESPECIALISTA'),
+(8, 'medico');
 
 -- --------------------------------------------------------
 
@@ -174,8 +186,8 @@ CREATE TABLE `usuario` (
   `nombreUser` varchar(50) DEFAULT NULL,
   `direccion` varchar(20) DEFAULT NULL,
   `correo` varchar(20) DEFAULT NULL,
-  `tipoUsua` varchar(20) DEFAULT NULL,
-  `id_estado` varchar(20) DEFAULT NULL,
+  `tipoUsua` int(11) DEFAULT NULL,
+  `id_estado` int(10) DEFAULT NULL,
   `contraseña` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -184,9 +196,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`iduser`, `nombreUser`, `direccion`, `correo`, `tipoUsua`, `id_estado`, `contraseña`) VALUES
-(88888, 'Sandra Hernandez', 'Cr 5 N 7', 'sandra@gmail.co', 'tp2', 'est1', '23456'),
-(99999, 'Miguel Suarez', 'Avda 4 n 12', 'suarez@hotmail.com', 'tp1', 'est1', '12345'),
-(2121212, 'Carlos Tique', 'Cr 2 N 8', 'carti@hotmail.com', 'tp3', 'est1', '34567');
+(22222, 'carlos Lopez', 'call 180', 'camcar@gmail.com', 2, 1, '34567'),
+(33333, 'paola martinez', 'calle 60 # 12 -6', 'paolacol@gmail.com', 3, 1, '23456'),
+(44444, 'maria rindon', 'calle 12 # 22-18', 'mariaren@hotmail.com', 2, 1, '78945'),
+(55555, 'pablo lopez', 'cr 12', 'pablo@hotmail.com', 3, 1, '12345'),
+(99999, 'Miguel Suarez', 'Avda 4 n 12', 'suarez@hotmail.com', 1, 1, '12345');
 
 -- --------------------------------------------------------
 
@@ -200,7 +214,7 @@ CREATE TABLE `visita` (
   `timeVisita` time DEFAULT NULL,
   `iduser` int(60) DEFAULT NULL,
   `id_mascota` varchar(10) DEFAULT NULL,
-  `id_estado` varchar(20) DEFAULT NULL,
+  `id_estado` int(10) DEFAULT NULL,
   `temperatura` varchar(5) DEFAULT NULL,
   `ritmoCardio` varchar(5) DEFAULT NULL,
   `recomendaciones` text DEFAULT NULL,
@@ -212,7 +226,10 @@ CREATE TABLE `visita` (
 --
 
 INSERT INTO `visita` (`idVisita`, `dateVisita`, `timeVisita`, `iduser`, `id_mascota`, `id_estado`, `temperatura`, `ritmoCardio`, `recomendaciones`, `valor`) VALUES
-(1, '2022-06-08', '10:29:52', 2121212, 'con01', 'est4', '38 gr', '90 pu', 'Conejo presenta un cuadro de fiebre poner trapitos de agua tibia cada hora', '20.000');
+(1, '2022-09-27', '18:52:00', 22222, '78', 8, '25', '2', 'planchar para hacer tapete', '20000.000'),
+(12, '2022-09-28', '18:32:57', 44444, '58', 3, '30', '12', 'por favor que no salga a la calle todavía ya que esta con vértigo', '30000.000'),
+(58, '2022-09-06', '22:40:00', 22222, '78', 3, '60', '10', 'sdcsad', '80000.000'),
+(69, '2022-09-21', '20:47:00', 22222, '78', 4, '19', '30', 'mucho cuidado', '100000.000');
 
 --
 -- Índices para tablas volcadas
@@ -279,24 +296,48 @@ ALTER TABLE `usuario`
 ALTER TABLE `visita`
   ADD PRIMARY KEY (`idVisita`),
   ADD KEY `id_mascota` (`id_mascota`),
-  ADD KEY `id_estado` (`id_estado`),
-  ADD KEY `iduser` (`iduser`);
+  ADD KEY `iduser` (`iduser`),
+  ADD KEY `id_estado` (`id_estado`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `estado`
+--
+ALTER TABLE `estado`
+  MODIFY `id_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `medicamentos`
+--
+ALTER TABLE `medicamentos`
+  MODIFY `idMedicamento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `recibos`
 --
 ALTER TABLE `recibos`
-  MODIFY `idRecibo` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idRecibo` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `tipomascotas`
+--
+ALTER TABLE `tipomascotas`
+  MODIFY `id_tip_masc` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `tipousuario`
+--
+ALTER TABLE `tipousuario`
+  MODIFY `tipoUsua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `visita`
 --
 ALTER TABLE `visita`
-  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- Restricciones para tablas volcadas
@@ -312,30 +353,30 @@ ALTER TABLE `afiliacion`
 -- Filtros para la tabla `mascotasclientes`
 --
 ALTER TABLE `mascotasclientes`
-  ADD CONSTRAINT `mascotasclientes_ibfk_1` FOREIGN KEY (`id_tip_masc`) REFERENCES `tipomascotas` (`id_tip_masc`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `mascotasclientes_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `usuario` (`iduser`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `mascotasclientes_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `usuario` (`iduser`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `mascotasclientes_ibfk_3` FOREIGN KEY (`id_tip_masc`) REFERENCES `tipomascotas` (`id_tip_masc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `recibos`
 --
 ALTER TABLE `recibos`
   ADD CONSTRAINT `recibos_ibfk_1` FOREIGN KEY (`idVisita`) REFERENCES `visita` (`idVisita`),
-  ADD CONSTRAINT `recibos_ibfk_2` FOREIGN KEY (`idMedicamento`) REFERENCES `medicamentos` (`idMedicamento`);
+  ADD CONSTRAINT `recibos_ibfk_2` FOREIGN KEY (`idMedicamento`) REFERENCES `medicamentos` (`idMedicamento`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `fK_tipoUser` FOREIGN KEY (`tipoUsua`) REFERENCES `tipousuario` (`tipoUsua`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON DELETE CASCADE;
+  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`tipoUsua`) REFERENCES `tipousuario` (`tipoUsua`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `visita`
 --
 ALTER TABLE `visita`
   ADD CONSTRAINT `visita_ibfk_2` FOREIGN KEY (`id_mascota`) REFERENCES `mascotasclientes` (`id_mascota`),
-  ADD CONSTRAINT `visita_ibfk_3` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`),
-  ADD CONSTRAINT `visita_ibfk_4` FOREIGN KEY (`iduser`) REFERENCES `usuario` (`iduser`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `visita_ibfk_4` FOREIGN KEY (`iduser`) REFERENCES `usuario` (`iduser`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `visita_ibfk_5` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

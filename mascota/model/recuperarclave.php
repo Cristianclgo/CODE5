@@ -15,7 +15,7 @@ if ($_POST['cont']== "" || $_POST['conta']== "" )
 	{
     
         $doc = $_SESSION['ced'];
-        $insertSQL = "UPDATE user SET password ='$contra'  WHERE cedula = '$doc'";
+        $insertSQL = "UPDATE usuario SET contraseña ='$contra'  WHERE iduser = '$doc'";
         mysqli_query($mysqli, $insertSQL) or die(mysqli_error());  	
              echo '<script>alert (" Cambio de Clave Existosa ");</script>';
             echo '<script>window.location="../index.html"</script>';
@@ -29,14 +29,14 @@ if($_POST["inicio"])
 {
 	// inicia sesion para los usuarios
 	$doc = $_POST["doc"];
-	$sql="select * from user where cedula = '$doc'"; 	
+	$sql="select * from usuario where iduser = '$doc'"; 	
 	$query=mysqli_query($mysqli, $sql);
 	$fila=mysqli_fetch_assoc($query);
 	
 	if($fila)
     {		
 		/// si el usario  son correctas.
-        $_SESSION['ced']=$fila['cedula'];
+        $_SESSION['ced']=$fila['iduser'];
     
     ?>
         <html>
@@ -55,10 +55,10 @@ if($_POST["inicio"])
                             <!--crea formularios-->
                             <label for="usuario">Nueva Contraseña</label>
                             <!-- etiqueta lo que se le muestra el usuario -->
-                            <input type="text" name="cont" id="cont" placeholder="Nueva Clave" >
+                            <input type="password" name="cont" id="cont" placeholder="Nueva Clave" >
                             <label for="usuario">Confirme Contraseña</label>
                             <!-- etiqueta lo que se le muestra el usuario -->
-                            <input type="text" name="conta" id="conta" placeholder="Confirme Clave">
+                            <input type="password" name="conta" id="conta" placeholder="Confirme Clave">
                             <!-- Caja de texto donde el usuario digite texto -->
                             <input type="submit" name="inicio" id="inicio" value="cambiar" >
                             <input type="hidden" name="MM_update" value="form1" />

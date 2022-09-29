@@ -8,7 +8,7 @@ if($_POST["inicio"]){
 	
 	
 	/// consultamos el usuario segun el usuario y la clave
-	$con="select * from usuario where iduser = '$usuario' and contraseña = '$clave'"; 	
+	$con="select * from usuario where iduser = '$usuario' and contraseña = '$clave' AND id_estado = 1"; 	
 	$query=mysqli_query($mysqli, $con);
 	$fila=mysqli_fetch_assoc($query);
 	
